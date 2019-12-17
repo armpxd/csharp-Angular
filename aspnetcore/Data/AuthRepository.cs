@@ -12,9 +12,9 @@ namespace aspnetcore.Data
         {
             _context = context;
         }
-        public async Task<user> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.User == username);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == username);
 
             if (user == null){
                 return null;
@@ -38,7 +38,7 @@ namespace aspnetcore.Data
             return true;
         }
 
-        public async Task<user> Register(user user, string password)
+        public async Task<User> Register(User user, string password)
         {
             byte [] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
@@ -63,7 +63,7 @@ namespace aspnetcore.Data
 
         public async Task<bool> UserExists(string username)
         {
-            if(await _context.Users.AnyAsync(x=> x.User == username)){
+            if(await _context.Users.AnyAsync(x=> x.UserName == username)){
                 return true;
             }
             return false;
