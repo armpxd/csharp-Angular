@@ -4,12 +4,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using aspnetcore.Data;
 using aspnetcore.Dtos;
+using aspnetcore.Helpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetcore.Controllers
 {   
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -28,8 +30,6 @@ namespace aspnetcore.Controllers
         public async Task<IActionResult> GetUsers()
         {
             var users = await _repo.GetUsers();
-
-
             var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
             return Ok(userToReturn);
