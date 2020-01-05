@@ -11,7 +11,7 @@ namespace aspnetcore.Models
         public bool IsMain { get; set; }
         public string PublicId { get; set; }
 
-        public User user { get; set; }
+        public virtual User user { get; set; }
         public int UserId { get; set; }
     }
 }

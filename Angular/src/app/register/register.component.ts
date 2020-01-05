@@ -57,16 +57,9 @@ export class RegisterComponent implements OnInit {
         });
       });
     }
-    // this.autService.register(this.model).subscribe(() => {
-    //   this.alertify.success('registro satisfactorio');
-    // }, err => {
-    //   this.alertify.error(err);
-    // });
-    console.log(this.registerForm.value);
   }
 
   cancel() {
     this.cancelRegister.emit(false);
-    // console.log('cancelado');
   }
 }
